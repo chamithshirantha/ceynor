@@ -42,130 +42,26 @@
                           <div class="y-product_listing y-product_listing_side row m-0 ">
                              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_1.jpg') }}" class="img-fluid" alt=""></a>
+                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product1.jpg') }}" class="img-fluid" alt=""></a>
                                </div>
                                <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
+                                 <a href="charter_single.html">Elan 1923 Impression</a> 
+                                
                                  <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
                                </div> 
-                             </div> 
+                             </div>
+
                              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_2.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_3.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_13.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_14.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_15.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_7.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_8.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
-                             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                               <div class="y-yacht_intro_img">
-                                 <a href="charter_single.html"><img src="{{ asset('assets/images/product_9.jpg') }}" class="img-fluid" alt=""></a>
-                               </div>
-                               <div class="y-yacht_intro">
-                                 <a href="charter_single.html">Elan 1923 Impression</a>
-                                 <ul>
-                                    <li><i class="ti-key"></i> Capacity</li>
-                                    <li><img src="{{ asset('assets/images/bed.png') }}" alt=""> Length: 3 </li>
-                                 </ul> 
-                                 <span>Price from <strong>$5000</strong></span>
-                                 <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
-                               </div> 
-                             </div> 
+                              <div class="y-yacht_intro_img">
+                                <a href="charter_single.html"><img src="{{ asset('assets/images/product2.jpg') }}" class="img-fluid" alt=""></a>
+                              </div>
+                              <div class="y-yacht_intro">
+                                <a href="charter_single.html">Elan 1923 Impression</a> 
+                               
+                                <a href="#" class="read-more button-fancy -color-1"><span class="btn-arrow"></span><span class="twp-read-more text">Order Now</span></a>
+                              </div> 
+                            </div>
+                             
                           </div>   
                          
                    

@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
 
-    <h1 class="h3 mb-4 text-gray-800">Fishing Boats</h1>
+    <h1 class="h3 mb-4 text-gray-800">Passenger Boats</h1>
     <button type="button" id="add" data-bs-toggle="modal" data-bs-target="#addnew" class="btn btn-primary pull-right"> ADD NEW</button>
 
 </div>

@@ -150,32 +150,32 @@
                         <div class="owl-carousel charter-carousel  owl-theme">
                            <div class="item" data-dot="<h4>Fishing Boats</h4>">  
                               <a  href="{{ url('/product/fishingboats?#fishing-boats') }}">
-                              <img  src="assets/images/product_1.jpg">
+                              <img  src="assets/images/boat1.jpg">
                               </a>
                            </div>
                            <div class="item" data-dot="<h4>Passenger Boats</h4>">  
                               <a  href="{{ url('/product/passengerboats?#passengerboats') }}">
-                              <img src="assets/images/product_2.jpg">
+                              <img src="assets/images/boat2.jpg">
                               </a>
                            </div>
                            <div class="item" data-dot="<h4>Other Products</h4>">  
                               <a  href="{{ url('/product/otherproducts?#otherproduct') }}">
-                              <img src="assets/images/product_3.jpg">
+                              <img src="assets/images/product1.jpg">
                               </a>
                            </div>
                            <div class="item" data-dot="<h4>Fishing Boats</h4>">  
                               <a  href="{{ url('/product/fishingboats?#fishing-boats') }}">
-                              <img src="assets/images/product_4.jpg">
+                              <img src="assets/images/boat4.jpg">
                               </a>
                            </div>
                            <div class="item" data-dot="<h4>Passenger Boats</h4>">  
                               <a  href="{{ url('/product/passengerboats?#passengerboats') }}">
-                              <img src="assets/images/product_5.jpg">
+                              <img src="assets/images/boat3.jpg">
                               </a>
                            </div>
                            <div class="item" data-dot="<h4>Other Products</h4>">  
                               <a  href="{{ url('/product/otherproducts?#otherproduct') }}">
-                              <img src="assets/images/product_6.jpg">
+                              <img src="assets/images/product3.jpg">
                               </a>
                            </div>
                         </div>
@@ -361,14 +361,14 @@
                      </div>
                      <div class="col-sm-12 instagram-wrap text-center">
                         <div class="MagicScroll" data-options="arrows: inside; mode: cover-flow;  draggable: false ;scrollOnWheel: true; "> 
-                           <img src="assets/images/boat1.jpg" alt="">
-                           <img src="assets/images/i-2.jpg" alt="">
-                           <img src="assets/images/i-3.jpg" alt="">
-                           <img src="assets/images/i-4.jpg" alt="">
-                           <img src="assets/images/i-5.jpg" alt="">
-                           <img src="assets/images/i-6.jpg" alt="">
-                           <img src="assets/images/i-7.jpg" alt="">
-                           <img src="assets/images/i-8.jpg" alt="">
+                           <img src="assets/images/gallery (6).jpg" alt="">
+                           <img src="assets/images/gallery (110).jpg" alt="">
+                           <img src="assets/images/gallery (156).jpg" alt="">
+                           <img src="assets/images/gallery (198).jpg" alt="">
+                           <img src="assets/images/gallery (21).jpg" alt="">
+                           <img src="assets/images/gallery (38).jpg" alt="">
+                           <img src="assets/images/gallery (110).jpg" alt="">
+                           <img src="assets/images/gallery (114).jpg" alt="">
                         </div>
                      </div>
                      <div class="col-auto btn-wrap-center">

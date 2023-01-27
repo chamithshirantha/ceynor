@@ -47,4 +47,5 @@ Route::get('ourprojects',[PageController::class,'project'])->name('ourprojects')
 // admin urls
 Route::get('admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('admin/fishingboats',[AdminController::class, 'fishingboat'])->name('admin.fishingboats');
+Route::get('admin/passengerboats',[AdminController::class, 'passengerboat'])->name('admin.passengerboats');
 
