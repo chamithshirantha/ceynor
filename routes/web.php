@@ -1,19 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FishingboatController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -46,6 +36,13 @@ Route::get('ourprojects',[PageController::class,'project'])->name('ourprojects')
 
 // admin urls
 Route::get('admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('admin/fishingboats',[AdminController::class, 'fishingboat'])->name('admin.fishingboats');
+
+Route::get('admin/fishingboats',[FishingboatController::class, 'index'])->name('admin.fishingboats');
+Route::post('admin/fishingboats/save',[FishingboatController::class, 'save'])->name('fishingboat.save');
+Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat']);
+
+
+
+
 Route::get('admin/passengerboats',[AdminController::class, 'passengerboat'])->name('admin.passengerboats');
 

@@ -36,6 +36,11 @@
                     <input type="text" name="boatname" class="form-control" required>
                 </div>
 
+                <div class="mb-3">
+                  <label for="image" class="form-label">Choose Image</label>
+                  <input class="form-control" type="file" name="image">
+                </div>
+
                 <div class="form-group">
                     <label for="description">Short Description</label>
                     <textarea class="form-control" name="discription" rows="3"></textarea>
@@ -117,5 +122,12 @@
       </div>
     </div>
 </div>
+
+    
+@endsection
+
+@section('table')
+
+
     
 @endsection

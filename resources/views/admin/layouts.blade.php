@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -19,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assetsadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -42,18 +44,18 @@
             <hr class="sidebar-divider my-0">
 
            <!-- Nav Item - Dashboard -->
-           <li class="nav-item active">
-            <a class="nav-link" href="index.html">                   
+           <li class="nav-item {{ 'admin/dashboard' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">                   
                 <span>Dashboard</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">                   
+            <li class="nav-item {{ 'admin/fishingboats' == request()->path() ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.fishingboats') }}">                   
                     <span>Fishing Boats</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">                   
+            <li class="nav-item {{ 'admin/passengerboats' == request()->path() ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.passengerboats') }}">                   
                     <span>Passenger Boats</span></a>
             </li>
 
@@ -301,6 +303,10 @@
                 <!-- End of Topbar -->
 
                 @yield('content')
+
+                
+                @yield('table')
+                @yield('scripts')
 
             </div>
             <!-- End of Main Content -->

@@ -10,9 +10,7 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function fishingboat(){
-        return view('admin.fishingboats');
-    }
+    
 
     public function passengerboat(){
         return view('admin.passengerboats');

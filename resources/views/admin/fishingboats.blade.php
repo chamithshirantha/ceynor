@@ -6,6 +6,25 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 
+
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+    </div>
+@endif
+
+@if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+@endif
+
 <div class="container-fluid">
 
     <h1 class="h3 mb-4 text-gray-800">Fishing Boats</h1>
@@ -21,19 +40,23 @@
     </div>
 </div> --}}
 
-
+<!-- Add Modal Start-->
 <div class="modal fade" id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        
-        
+
         <div id="errorMessage" class="alert alert-warning d-none"></div>
         <div class="modal-body">
-            <form action="" id="addForm">
-
+            <form action="{{ route('fishingboat.save') }}" id="addForm" method="POST" enctype="multipart/form-data">
+              @csrf
                 <div class="mb-3">
                     <label for="boatname">Boat Name</label>
                     <input type="text" name="boatname" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="image" class="form-label">Choose Image</label>
+                  <input class="form-control" type="file" name="image">
                 </div>
 
                 <div class="form-group">
@@ -105,7 +128,11 @@
                     <div class="form-group col-md-4">
                         <label for="fish hold capacity">Fish hold capacity</label>
                         <input type="text" class="form-control" name="fish_hold_capacity">
-                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="price">Price</label>
+                      <input type="text" class="form-control" name="price">
+                    </div>
                   </div>
 
         </div>
@@ -117,5 +144,185 @@
       </div>
     </div>
 </div>
+
+<!-- Add end -->
+
+
+
+<!-- Edit Modal Start-->
+
+@endsection
+
+@section('table')
+<div class="container-fluid">
+
+  
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">DataTables of Fishing Boats</h6>
+      </div>
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th>Boat Name</th>
+                          <th>Image</th>
+                          <th>Short Description</th>
+                          <th>Length</th>
+                          <th>Beam</th>
+                          <th>Draft</th>
+                          <th>Main Hull Beam</th>
+                          <th>Fuel</th>
+                          <th>Water</th>
+                          <th>Seating Capacity</th>
+                          <th>Speed</th>
+                          <th>Bed</th>
+                          <th>Hull Type</th>
+                          <th>Fish Hold Capacity</th>
+                          <th>Price</th>
+                          
+                      </tr>
+                  </thead>
+                  
+                  <tbody>
+                    
+                 
+                  </tbody>
+
+                  
+              </table>
+          </div>
+      </div>
+  </div>
+
+</div>
+@endsection
+
+
+
+@section('scripts')
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+      // fetchData();
+
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "/admin/fishingboats/fetch-boat",
+                dataType: "json",
+                success: function (response) {
+                    // console.log(response.boats);
+                    $('tbody').html("");
+                    $.each(response.boats, function (key, item) {
+                        $('tbody').append('<tr>\
+                            <td>' + item.boat_name + '</td>\
+                            <td>' + item.image + '</td>\
+                            <td>' + item.short_description + '</td>\
+                            <td>' + item.length + '</td>\
+                            <td>' + item.beam + '</td>\
+                            <td>' + item.draft + '</td>\
+                            <td>' + item.main_hull_beam + '</td>\
+                            <td>' + item.fuel + '</td>\
+                            <td>' + item.water + '</td>\
+                            <td>' + item.seating_capacity + '</td>\
+                            <td>' + item.speed + '</td>\
+                            <td>' + item.beds + '</td>\
+                            <td>' + item.hull_type + '</td>\
+                            <td>' + item.fish_hold_capacity + '</td>\
+                            <td>' + item.price + '</td>\
+                            <td><button type="button" value="' + item.id + '" class="btn btn-primary editbtn btn-sm">Edit</button></td>\
+                            <td><button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button></td>\
+                        \</tr>');
+                    });
+                    
+                    
+                }
+            });
+        }
+      
+
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      
+      
+    // $('#addForm').on('submit', function(e) {
+    //   e.preventDefault();
+    //   var form = $(this).serialize();
+    //   var url = $(this).attr('action');
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: "admin/fishingboats/save",
+    //     data: form,
+    //     dataType: 'json',
+    //     success: function () {
+    //       $('#addnew').modal('hide');
+    //       $('#addForm')[0].reset();
+    //     }
+    //   });
+        
+    //   });
+
+
+    $('#addForm').on('submit', function(event){
+      event.preventDefault();
+      $.ajax({
+      url:"/admin/fishingboats/save",
+      method:"POST",
+      data:new FormData(this),
+      dataType:'JSON',
+      contentType: false,
+      cache: false,
+      processData: false,
+      success:function()
+      {
+        $('#addnew').modal('hide');
+        $('#addForm')[0].reset();
+        
+      }
+      })
+    });
+
+
+
+      
+    });
+  
+  
+
+  
+
+  
+
+  // $(document).on('click', '.edit', function (event) {
+  //           event.preventDefault();
+  //           var id = $(this).data('id');
+  //           const firstname = $(this).data('first');
+  //           var lastname = $(this).data('last');
+
+  //           $('#editmodal').modal('show');
+
+  //           console.log(id);
+  //           console.log(firstname);
+  //           $('#firstname').val(firstname);
+  //           $('#lastname').val(lastname);
+  //           $('#memid').val(id);
+  //       });
+
+
+  //popu message
+  
+
+
+</script>
     
 @endsection
