@@ -39,7 +39,7 @@ class FishingboatController extends Controller
 
             $request->image->move(public_path('images/fishingboats'), $image_name);
 
-            $temp_name = "hello";
+            
 
             $boat = new FishingBoat;
 
@@ -63,8 +63,29 @@ class FishingboatController extends Controller
 
             return redirect()->route('admin.fishingboats')->with('success', 'Added the Product Successfull !!');
 
-        }  
+        } 
         
+    }
+
+
+    public function edit($id)
+    {
+        $boat = FishingBoat::find($id);
+        if($boat)
+        {
+            return response()->json([
+                'status'=>200,
+                'boat'=> $boat,
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status'=>404,
+                'message'=>'No Student Found.'
+            ]);
+        }
+
     }
 
     

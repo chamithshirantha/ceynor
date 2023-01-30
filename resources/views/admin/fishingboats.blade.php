@@ -56,7 +56,7 @@
 
                 <div class="mb-3">
                   <label for="image" class="form-label">Choose Image</label>
-                  <input class="form-control" type="file" name="image">
+                  <input class="form-control" type="file" name="image" required>
                 </div>
 
                 <div class="form-group">
@@ -151,6 +151,116 @@
 
 <!-- Edit Modal Start-->
 
+<div class="modal fade" id="editnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div id="errorMessage" class="alert alert-warning d-none"></div>
+      <div class="modal-body">
+          <form action="" id="editForm" method="POST" enctype="multipart/form-data">
+            @csrf
+              <div class="mb-3">
+                  <label for="boatname">Boat Name</label>
+                  <input class="form-control" type="text" name="boatname" id="boatname" multiple required>
+              </div>
+
+              <div class="mb-3">
+                <label for="image" class="form-label">Choose Image</label>
+                <input class="form-control" type="text" id="image_show" name="image" required>
+               
+              </div>
+
+              <div class="form-group">
+                  <label for="description">Short Description</label>
+                  <textarea class="form-control" id="discription" name="discription" rows="3"></textarea>
+              </div>
+            
+              
+              <div class="mb-3">
+                  <label for="lastname">Specification</label>
+              </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="length">Length</label>
+                    <input type="text" class="form-control" name="length" id="length">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="Beam">Beam</label>
+                    <input type="text" class="form-control" name="beam"  id="beam">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                      <label for="length">Draft</label>
+                      <input type="text" class="form-control" name="draft" id="draft">
+                    </div>
+                </div>
+
+
+                <div class="form-row">                  
+                  <div class="form-group col-md-4">
+                      <label for="Main Hull Beam">Main Hull Beam</label>
+                      <input type="text" class="form-control" name="mainhullbeam" id="mainhullbeam">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="fuel">Fuel</label>
+                    <input type="text" class="form-control" name="fuel" id="fuel">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="water">Water</label>
+                    <input type="text" class="form-control" name="water" id="water">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="fuel">Seating Capacity</label>
+                    <input type="text" class="form-control" name="seating_capacity" id="seating_capacity">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="Speed">Speed</label>
+                    <input type="text" class="form-control" name="speed" id="speed">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                      <label for="Beds">Beds</label>
+                      <input type="text" class="form-control" name="beds" id="beds">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="Hull Type">Hull Type</label>
+                    <input type="text" class="form-control" name="hulltype" id="hulltype">
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="fish hold capacity">Fish hold capacity</label>
+                      <input type="text" class="form-control" name="fish_hold_capacity" id="fish_hold_capacity">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" name="price" id="price">
+                  </div>
+                </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 @endsection
 
 @section('table')
@@ -169,7 +279,7 @@
                   <thead>
                       <tr>
                           <th>Boat Name</th>
-                          <th>Image</th>
+                          <th><img src="{{ asset('images\fishingboats\1675017520.jpg') }}"></th>
                           <th>Short Description</th>
                           <th>Length</th>
                           <th>Beam</th>
@@ -209,8 +319,8 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-
-      // fetchData();
+// show data 
+      fetchData();
 
         function fetchData() {
             $.ajax({
@@ -223,7 +333,7 @@
                     $.each(response.boats, function (key, item) {
                         $('tbody').append('<tr>\
                             <td>' + item.boat_name + '</td>\
-                            <td>' + item.image + '</td>\
+                            <td> <img width="35px" height="12px" src="public\\images\\fishingboats\\'  + item.image + '" alt="" /></td>\
                             <td>' + item.short_description + '</td>\
                             <td>' + item.length + '</td>\
                             <td>' + item.beam + '</td>\
@@ -273,24 +383,96 @@
     //   });
 
 
-    $('#addForm').on('submit', function(event){
-      event.preventDefault();
-      $.ajax({
-      url:"/admin/fishingboats/save",
-      method:"POST",
-      data:new FormData(this),
-      dataType:'JSON',
-      contentType: false,
-      cache: false,
-      processData: false,
-      success:function()
-      {
-        $('#addnew').modal('hide');
-        $('#addForm')[0].reset();
+    // $('#addForm').on('submit', function(event){
+    //   event.preventDefault();
+    //   $.ajax({
+    //   url:"/admin/fishingboats/save",
+    //   method:"POST",
+    //   data:new FormData(this),
+    //   dataType:'JSON',
+    //   contentType: false,
+    //   cache: false,
+    //   processData: false,
+    //   success:function()
+    //   {
+    //     $('.addnew').modal('hide');
+    //     $('#addForm')[0].reset();
         
-      }
-      })
+    //   }
+    //   })
+    // });
+
+// save data
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        $('#image-input-error').text('');
+
+        $.ajax({
+            type:'POST',
+            url: "{{ route('fishingboat.save') }}",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (response) => {
+                if (response) {
+                    this.reset();
+                    alert('Image has been uploaded successfully');
+                    fetchData();
+                    $('#addnew').modal('hide');
+                    $('#addForm')[0].reset();
+                    
+                }
+            },
+            error: function(response){
+                $('#image-input-error').text(response.responseJSON.message);
+            }
+       });
     });
+
+
+    //edit data
+
+
+    $(document).on('click', '.editbtn', function (e) {
+            e.preventDefault();
+            var boat_id = $(this).val();
+            // alert(baot_id);
+            $('#editnew').modal('show');
+            $.ajax({
+                type: "GET",
+                url: "/admin/fishingboats/edit/" + boat_id,
+                success: function (response) {
+
+                  $('#boatname').val(response.boat.boat_name);
+                  $('#discription').val(response.boat.short_description);
+                  $('#length').val(response.boat.length);
+                  $('#beam').val(response.boat.beam);
+                  $('#draft').val(response.boat.draft);
+                  $('#mainhullbeam').val(response.boat.main_hull_beam);
+                  $('#fuel').val(response.boat.fuel);
+                  $('#water').val(response.boat.water);
+                  $('#seating_capacity').val(response.boat.seating_capacity);
+                  $('#speed').val(response.boat.speed);
+                  $('#beds').val(response.boat.beds);
+                  $('#hulltype').val(response.boat.hull_type);
+                  $('#fish_hold_capacity').val(response.boat.fish_hold_capacity);
+                  $('#price').val(response.boat.price);
+                
+                  
+                }
+            });
+            
+
+        });
+
+
+
+
+
+
+
+
 
 
 
