@@ -159,6 +159,8 @@
       <div class="modal-body">
           <form action="" id="editForm" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <input type="hidden" id="boat_id"  />
               <div class="mb-3">
                   <label for="boatname">Boat Name</label>
                   <input class="form-control" type="text" name="boatname" id="boatname" multiple required>
@@ -166,7 +168,13 @@
 
               <div class="mb-3">
                 <label for="image" class="form-label">Choose Image</label>
-                <input class="form-control" type="text" id="image_show" name="image" required>
+                <input class="form-control" type="file" id="image" name="image" required>
+                <br>
+                
+                <img src="" class="img-fluid" width="" height="100">
+                <br>
+              
+                
                
               </div>
 
@@ -249,7 +257,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary update_student">Update</button>
       </form>
       </div>
     </div>
@@ -279,7 +287,7 @@
                   <thead>
                       <tr>
                           <th>Boat Name</th>
-                          <th></th>
+                          {{-- <th><img src="..\uploads\fishingboats\1675144768.jpg" width="500" height="600"></th> --}}
                           <th>Short Description</th>
                           <th>Length</th>
                           <th>Beam</th>
@@ -293,8 +301,9 @@
                           <th>Hull Type</th>
                           <th>Fish Hold Capacity</th>
                           <th>Price</th>
-                          
-                      </tr>
+                          <th colspan="2">Action</th>
+                     
+                     </tr>
                   </thead>
                   
                   <tbody>
@@ -331,25 +340,24 @@
                     // console.log(response.boats);
                     $('tbody').html("");
                     $.each(response.boats, function (key, item) {
-                        $('tbody').append('<tr>\
-                            <td>' + item.boat_name + '</td>\
-                            <td> '+ item.image + '</td>\
-                            <td>' + item.short_description + '</td>\
-                            <td>' + item.length + '</td>\
-                            <td>' + item.beam + '</td>\
-                            <td>' + item.draft + '</td>\
-                            <td>' + item.main_hull_beam + '</td>\
-                            <td>' + item.fuel + '</td>\
-                            <td>' + item.water + '</td>\
-                            <td>' + item.seating_capacity + '</td>\
-                            <td>' + item.speed + '</td>\
-                            <td>' + item.beds + '</td>\
-                            <td>' + item.hull_type + '</td>\
-                            <td>' + item.fish_hold_capacity + '</td>\
-                            <td>' + item.price + '</td>\
-                            <td><button type="button" value="' + item.id + '" class="btn btn-primary editbtn btn-sm">Edit</button></td>\
-                            <td><button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button></td>\
-                        \</tr>');
+                        $('tbody').append('' 
+                        +'<tr><td> '+ item.boat_name +' </td>' +
+                        '<td>'+ item.boat_name +' </td>' +
+                        '<td>'+'<img src=../uploads/fishingboats/'+item.image +' height="60px"></td>'+
+                        '<td>'+ item.short_description +' </td>'+
+                        '<td>'+ item.length +' </td>'+
+                        '<td>'+ item.draft +' </td>'+
+                        '<td>'+ item.main_hull_beam +' </td>'+
+                        '<td>'+ item.fuel +' </td>'+
+                        '<td>'+ item.water +' </td>'+
+                        '<td>'+ item.seating_capacity +' </td>'+
+                        '<td>'+ item.beds +' </td>'+
+                        '<td>'+ item.hull_type +' </td>'+
+                        '<td>'+ item.fish_hold_capacity +' </td>'+
+                        '<td>'+ item.price +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
+                        '<td>'+ '<button type="button" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>'
+                        );
                     });
                     
                     
@@ -358,11 +366,7 @@
         }
       
 
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
+      
       
       
     // $('#addForm').on('submit', function(e) {
@@ -408,6 +412,12 @@
         let formData = new FormData(this);
         $('#image-input-error').text('');
 
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
         $.ajax({
             type:'POST',
             url: "{{ route('fishingboat.save') }}",
@@ -437,15 +447,21 @@
     $(document).on('click', '.editbtn', function (e) {
             e.preventDefault();
             var boat_id = $(this).val();
+            var url = "{{URL('/admin/fishingboats/edit/')}}";
+            var dltUrl = url+"/"+boat_id;
             // alert(baot_id);
             $('#editnew').modal('show');
             $.ajax({
                 type: "GET",
-                url: "{{ URL::route('edit', [$boat_id->id]) }}",{id:id},
+                url: dltUrl,
                 success: function (response) {
+
+                  console.log(response);
 
                   $('#boatname').val(response.boat.boat_name);
                   $('#discription').val(response.boat.short_description);
+                  // $('#image').val(response.boat.image);
+                  $("input[name='image']").siblings("img").attr("src", "../uploads/fishingboats/"+response.boat.image);
                   $('#length').val(response.boat.length);
                   $('#beam').val(response.boat.beam);
                   $('#draft').val(response.boat.draft);
@@ -458,10 +474,28 @@
                   $('#hulltype').val(response.boat.hull_type);
                   $('#fish_hold_capacity').val(response.boat.fish_hold_capacity);
                   $('#price').val(response.boat.price);
+                  $('#boat_id').val(boat_id);
                 
                   
                 }
             });
+            
+
+        });
+
+        //update
+
+
+
+      $(document).on('click', '.update_student', function (e) {
+            e.preventDefault();
+
+            $(this).text('Updating..');
+            var id = $('#boat_id').val();
+            // alert(id);
+
+
+
             
 
         });

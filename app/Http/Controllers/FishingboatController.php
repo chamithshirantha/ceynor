@@ -82,10 +82,14 @@ class FishingboatController extends Controller
         {
             return response()->json([
                 'status'=>404,
-                'message'=>'No Student Found.'
+                'message'=>'No boats Found.'
             ]);
         }
 
+    }
+
+    public function update(){
+        
     }
 
     
