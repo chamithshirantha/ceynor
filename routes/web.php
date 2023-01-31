@@ -39,8 +39,8 @@ Route::get('admin/dashboard',[AdminController::class, 'dashboard'])->name('admin
 
 Route::get('admin/fishingboats',[FishingboatController::class, 'index'])->name('admin.fishingboats');
 Route::post('admin/fishingboats/save',[FishingboatController::class, 'save'])->name('fishingboat.save');
-Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat']);
-Route::get('admin/fishingboats/edit/{id}', [FishingboatController::class, 'edit']);
+Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat'])->name('fetchboat');
+Route::get('admin/fishingboats/edit/{id}', [FishingboatController::class, 'edit'])->name('edit');
 
 
 

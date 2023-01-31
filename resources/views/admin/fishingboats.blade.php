@@ -279,7 +279,7 @@
                   <thead>
                       <tr>
                           <th>Boat Name</th>
-                          <th><img src="{{ asset('images\fishingboats\1675017520.jpg') }}"></th>
+                          <th></th>
                           <th>Short Description</th>
                           <th>Length</th>
                           <th>Beam</th>
@@ -325,7 +325,7 @@
         function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "/admin/fishingboats/fetch-boat",
+                url: "{{ route('fetchboat') }}",
                 dataType: "json",
                 success: function (response) {
                     // console.log(response.boats);
@@ -333,7 +333,7 @@
                     $.each(response.boats, function (key, item) {
                         $('tbody').append('<tr>\
                             <td>' + item.boat_name + '</td>\
-                            <td> <img width="35px" height="12px" src="public\\images\\fishingboats\\'  + item.image + '" alt="" /></td>\
+                            <td> '+ item.image + '</td>\
                             <td>' + item.short_description + '</td>\
                             <td>' + item.length + '</td>\
                             <td>' + item.beam + '</td>\
@@ -441,7 +441,7 @@
             $('#editnew').modal('show');
             $.ajax({
                 type: "GET",
-                url: "/admin/fishingboats/edit/" + boat_id,
+                url: "{{ URL::route('edit', [$boat_id->id]) }}",{id:id},
                 success: function (response) {
 
                   $('#boatname').val(response.boat.boat_name);

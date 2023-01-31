@@ -37,7 +37,7 @@ class FishingboatController extends Controller
         }else{
             $image_name = time(). "." . $request->image->extension();
 
-            $request->image->move(public_path('images/fishingboats'), $image_name);
+            $request->image->move(base_path('\uploads\fishingboats'), $image_name);
 
             
 
