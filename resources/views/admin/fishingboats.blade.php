@@ -168,7 +168,7 @@
 
               <div class="mb-3">
                 <label for="image" class="form-label">Choose Image</label>
-                <input class="form-control" type="file" id="image" name="image" required>
+                {{-- <input class="form-control" type="file" id="image" name="image" required> --}}
                 <br>
                 
                 <img src="" class="img-fluid" width="" height="100">
@@ -369,42 +369,7 @@
       
       
       
-    // $('#addForm').on('submit', function(e) {
-    //   e.preventDefault();
-    //   var form = $(this).serialize();
-    //   var url = $(this).attr('action');
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: "admin/fishingboats/save",
-    //     data: form,
-    //     dataType: 'json',
-    //     success: function () {
-    //       $('#addnew').modal('hide');
-    //       $('#addForm')[0].reset();
-    //     }
-    //   });
-        
-    //   });
-
-
-    // $('#addForm').on('submit', function(event){
-    //   event.preventDefault();
-    //   $.ajax({
-    //   url:"/admin/fishingboats/save",
-    //   method:"POST",
-    //   data:new FormData(this),
-    //   dataType:'JSON',
-    //   contentType: false,
-    //   cache: false,
-    //   processData: false,
-    //   success:function()
-    //   {
-    //     $('.addnew').modal('hide');
-    //     $('#addForm')[0].reset();
-        
-    //   }
-    //   })
-    // });
+   
 
 // save data
     $('#addForm').submit(function(e) {
@@ -493,7 +458,32 @@
             $(this).text('Updating..');
             var id = $('#boat_id').val();
             // alert(id);
+            var url = "{{URL('/admin/fishingboats/update/')}}";
+            var fixURL = url+"/"+id;
 
+            var data = {
+              'boatname': $('.boatname').val(),
+              
+              'discription': $('.discription').val(),
+              
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "PUT",
+                url: fixURL,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    
+                }
+            });
 
 
             
@@ -501,9 +491,7 @@
         });
 
 
-
-
-
+  
 
 
 

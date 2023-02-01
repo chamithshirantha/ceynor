@@ -88,9 +88,47 @@ class FishingboatController extends Controller
 
     }
 
-    public function update(){
-        
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'boatname'=> 'required',
+           
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages()
+            ]);
+        }
+        else
+        {
+            $student = FishingBoat::find($id);
+            if($student)
+            {
+                $student->boat_name = $request->input('boatname');
+                $student->short_description = $request->input('description');
+                
+                $student->update();
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'Student Updated Successfully.'
+                ]);
+            }
+            else
+            {
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'No Student Found.'
+                ]);
+            }
+
+        }
     }
+
+        
+    
 
     
 
