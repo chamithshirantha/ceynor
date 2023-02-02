@@ -268,26 +268,7 @@
 
 
 
-<!-- Delete Modal Start-->
 
-{{-- <div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-body">
-          
-           <h4>Are you sure ? You want to delete this data ?</h4>
-           <input type="text" id="delete_boat_id">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary delete_boat">Delete</button>
-      
-      </div>
-    </div>
-  </div>
-</div> --}}
 
 
 <div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -312,6 +293,121 @@
 <!-- Delete Modal End-->
 
 
+
+<div class="modal fade" id="shownew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div id="errorMessage" class="alert alert-warning d-none"></div>
+      <div class="modal-body">
+          <form id="showForm"  enctype="multipart/form-data">
+            @csrf
+
+            <input type="hidden"  id="boat_id" name="boat_id"  />
+              <div class="mb-3">
+                  <label for="boatname">Boat Name</label>
+                  <input class="form-control" type="text" name="boatname"  disabled>
+              </div>
+
+              <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                
+                <br>
+
+                <input type="hidden" name="image">
+                
+                <img src="" class="img-fluid"  name="image"  width="" height="100" disabled>
+                <br>
+               
+              </div>
+
+              <div class="form-group">
+                  <label for="description">Short Description</label>
+                  <textarea class="form-control" name="description" rows="3" disabled></textarea>
+              </div>
+            
+              
+              <div class="mb-3">
+                  <label>Specification</label>
+              </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="length">Length</label>
+                    <input type="text" class="form-control" name="length" id="length" disabled>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="Beam">Beam</label>
+                    <input type="text" class="form-control" name="beam"  id="beam" disabled>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                      <label for="length">Draft</label>
+                      <input type="text" class="form-control" name="draft" id="draft" disabled>
+                    </div>
+                </div>
+
+
+                <div class="form-row">                  
+                  <div class="form-group col-md-4">
+                      <label for="Main Hull Beam">Main Hull Beam</label>
+                      <input type="text" class="form-control" name="mainhullbeam" id="mainhullbeam" disabled>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="fuel">Fuel</label>
+                    <input type="text" class="form-control" name="fuel" id="fuel" disabled>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="water">Water</label>
+                    <input type="text" class="form-control" name="water" id="water" disabled>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="fuel">Seating Capacity</label>
+                    <input type="text" class="form-control" name="seating_capacity" id="seating_capacity" disabled>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="Speed">Speed</label>
+                    <input type="text" class="form-control" name="speed" id="speed" disabled>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                      <label for="Beds">Beds</label>
+                      <input type="text" class="form-control" name="c" id="beds" disabled>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="Hull Type">Hull Type</label>
+                    <input type="text" class="form-control" name="hulltype" id="hulltype" disabled>
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="fish hold capacity">Fish hold capacity</label>
+                      <input type="text" class="form-control" name="fish_hold_capacity" id="fish_hold_capacity" disabled>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" name="price" id="price" disabled>
+                  </div>
+                </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 
 @section('table')
@@ -331,14 +427,14 @@
                       <tr>
                           <th>Boat Name</th>
                           <th>Image</th>
-                          <th>Short Description</th>
+                          {{-- <th>Short Description</th>
                           <th>Length</th>
                           <th>Beam</th>
                           <th>Draft</th>
                           <th>Main Hull Beam</th>
                           <th>Fuel</th>
                           <th>Water</th>
-                          <th>Seating Capacity</th>
+                          <th>Seating Capacity</th> --}}
                           <th>Speed</th>
                           <th>Bed</th>
                           <th>Hull Type</th>
@@ -386,19 +482,20 @@
                         $('tbody').append('' 
                         +'<tr><td> '+ item.boat_name +' </td>' +
                         '<td>'+'<img src=../uploads/fishingboats/'+item.image +' height="60px"></td>'+
-                        '<td>'+ item.short_description +' </td>'+
-                        '<td>'+ item.length +' </td>'+
-                        '<td>'+ item.beam +' </td>'+
-                        '<td>'+ item.draft +' </td>'+
-                        '<td>'+ item.main_hull_beam +' </td>'+
-                        '<td>'+ item.fuel +' </td>'+
-                        '<td>'+ item.water +' </td>'+
-                        '<td>'+ item.seating_capacity +' </td>'+
+                        // '<td>'+ item.short_description +' </td>'+
+                        // '<td>'+ item.length +' </td>'+
+                        // '<td>'+ item.beam +' </td>'+
+                        // '<td>'+ item.draft +' </td>'+
+                        // '<td>'+ item.main_hull_beam +' </td>'+
+                        // '<td>'+ item.fuel +' </td>'+
+                        // '<td>'+ item.water +' </td>'+
+                        // '<td>'+ item.seating_capacity +' </td>'+
                         '<td>'+ item.speed +' </td>'+
                         '<td>'+ item.beds +' </td>'+
                         '<td>'+ item.hull_type +' </td>'+
                         '<td>'+ item.fish_hold_capacity +' </td>'+
                         '<td>'+ item.price +' </td>'+
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning viewbtn btn-circle"><i class="fa fa-eye"></i></button>' +' </td>'+
                         '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
                         '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>'
                         );
@@ -569,6 +666,49 @@
 
             
           });
+        });
+
+
+
+
+
+        $(document).on('click', '.viewbtn', function (e) {
+            e.preventDefault();
+            var boat_id = $(this).val();
+            var url = "{{URL('/admin/fishingboats/edit/')}}";
+            var dltUrl = url+"/"+boat_id;
+            // alert(baot_id);
+            $('#shownew').modal('show');
+            $.ajax({
+                type: "GET",
+                url: dltUrl,
+                success: function (response) {
+
+                  console.log(response);
+
+                  $("input[name='boatname']").val(response.boat.boat_name);
+                  $("textarea[name='description']").val(response.boat.short_description);
+                  // $('#image').val(response.boat.image);
+                  $("input[name='image']").siblings("img").attr("src", "../uploads/fishingboats/"+response.boat.image);
+                  $("input[name='length']").val(response.boat.length);
+                  $("input[name='beam']").val(response.boat.beam);
+                  $("input[name='draft']").val(response.boat.draft);
+                  $("input[name='mainhullbeam']").val(response.boat.main_hull_beam);
+                  $("input[name='fuel']").val(response.boat.fuel);
+                  $("input[name='water']").val(response.boat.water);
+                  $("input[name='seating_capacity']").val(response.boat.seating_capacity);
+                  $("input[name='speed']").val(response.boat.speed);
+                  $("input[name='beds']").val(response.boat.beds);
+                  $("input[name='hulltype']").val(response.boat.hull_type);
+                  $("input[name='fish_hold_capacity']").val(response.boat.fish_hold_capacity);
+                  $("input[name='price']").val(response.boat.price);
+                  $("input[name='boat_id']").val(boat_id);
+                
+                  
+                }
+            });
+            
+
         });
 
 

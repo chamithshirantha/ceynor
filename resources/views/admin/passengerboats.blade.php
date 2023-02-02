@@ -247,7 +247,7 @@
   </div>
 </div>
 
-
+{{-- show image and data --}}
 
 <div class="modal fade" id="shownew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -261,43 +261,45 @@
             <input type="hidden"  id="boat_id" name="boat_id"  />
               <div class="mb-3">
                   <label for="boatname">Boat Name</label>
-                  <input class="form-control" type="text" name="boatname" multiple required disabled>
+                  <input class="form-control" type="text" name="boatname"  disabled>
               </div>
 
               <div class="mb-3">
-                <label for="image" class="form-label">Choose Image</label>
-                {{-- <input class="form-control" type="file"  name="image" > --}}
-                <br>
+                <label for="image" class="form-label">Image</label>
                 
-                <img src="" class="img-fluid" name="image"  width="" height="100">
+                <br>
+
+                <input type="hidden" name="image">
+                
+                <img src="" class="img-fluid"  name="image"  width="" height="100" disabled>
                 <br>
                
               </div>
 
               <div class="form-group">
                   <label for="description">Short Description</label>
-                  <textarea class="form-control" name="description" rows="3"></textarea>
+                  <textarea class="form-control" name="description" rows="3" disabled></textarea>
               </div>
             
               
               <div class="mb-3">
-                  <label for="lastname">Specification</label>
+                  <label>Specification</label>
               </div>
 
               <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="length">Length</label>
-                    <input type="text" class="form-control" name="length" id="length">
+                    <input type="text" class="form-control" name="length" id="length" disabled>
                   </div>
 
                   <div class="form-group col-md-4">
                     <label for="Beam">Beam</label>
-                    <input type="text" class="form-control" name="beam"  id="beam">
+                    <input type="text" class="form-control" name="beam"  id="beam" disabled>
                   </div>
 
                   <div class="form-group col-md-4">
                       <label for="length">Draft</label>
-                      <input type="text" class="form-control" name="draft" id="draft">
+                      <input type="text" class="form-control" name="draft" id="draft" disabled>
                     </div>
                 </div>
 
@@ -305,48 +307,48 @@
                 <div class="form-row">                  
                   <div class="form-group col-md-4">
                       <label for="Main Hull Beam">Main Hull Beam</label>
-                      <input type="text" class="form-control" name="mainhullbeam" id="mainhullbeam">
+                      <input type="text" class="form-control" name="mainhullbeam" id="mainhullbeam" disabled>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="fuel">Fuel</label>
-                    <input type="text" class="form-control" name="fuel" id="fuel">
+                    <input type="text" class="form-control" name="fuel" id="fuel" disabled>
                   </div>
 
                   <div class="form-group col-md-4">
                     <label for="water">Water</label>
-                    <input type="text" class="form-control" name="water" id="water">
+                    <input type="text" class="form-control" name="water" id="water" disabled>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="fuel">Seating Capacity</label>
-                    <input type="text" class="form-control" name="seating_capacity" id="seating_capacity">
+                    <input type="text" class="form-control" name="seating_capacity" id="seating_capacity" disabled>
                   </div>
 
                   <div class="form-group col-md-4">
                     <label for="Speed">Speed</label>
-                    <input type="text" class="form-control" name="speed" id="speed">
+                    <input type="text" class="form-control" name="speed" id="speed" disabled>
                   </div>
 
                   <div class="form-group col-md-4">
                       <label for="Beds">Beds</label>
-                      <input type="text" class="form-control" name="c" id="beds">
+                      <input type="text" class="form-control" name="c" id="beds" disabled>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="Hull Type">Hull Type</label>
-                    <input type="text" class="form-control" name="hulltype" id="hulltype">
+                    <input type="text" class="form-control" name="hulltype" id="hulltype" disabled>
                   </div>
                   <div class="form-group col-md-4">
                       <label for="fish hold capacity">Fish hold capacity</label>
-                      <input type="text" class="form-control" name="fish_hold_capacity" id="fish_hold_capacity">
+                      <input type="text" class="form-control" name="fish_hold_capacity" id="fish_hold_capacity" disabled>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" name="price" id="price">
+                    <input type="text" class="form-control" name="price" id="price" disabled>
                   </div>
                 </div>
 
@@ -360,7 +362,7 @@
   </div>
 </div>
 
-
+end show
 
 
 
