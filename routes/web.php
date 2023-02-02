@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FishingboatController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PassengerboatController;
+use App\Models\PassengerBoat;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function () {
@@ -11,7 +13,9 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
+// Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/adminhome', [App\Http\Controllers\HomeController::class, 'index'])->name('adminhome');
+
 
 
 Route::get('/',[PageController::class, 'index'])->name('home');
@@ -39,12 +43,17 @@ Route::get('admin/dashboard',[AdminController::class, 'dashboard'])->name('admin
 
 Route::get('admin/fishingboats',[FishingboatController::class, 'index'])->name('admin.fishingboats');
 Route::post('admin/fishingboats/save',[FishingboatController::class, 'save'])->name('fishingboat.save');
-Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat'])->name('fetchboat');
+Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat'])->name('fetchboat.fishingboat');
 Route::get('admin/fishingboats/edit/{id}', [FishingboatController::class, 'edit'])->name('fishingboat.edit');
 Route::post('admin/fishingboats/update/{id}', [FishingboatController::class, 'update'])->name('fishingboat.update');
 Route::delete('admin/fishingboats/delete/{id}', [FishingboatController::class, 'destory'])->name('fishingboat.delete');
 
 
 
-Route::get('admin/passengerboats',[AdminController::class, 'passengerboat'])->name('admin.passengerboats');
+Route::get('admin/passengerboats',[PassengerboatController::class, 'index'])->name('admin.passengerboats');
+Route::post('admin/passengerboats/save',[PassengerboatController::class, 'save'])->name('passengerboat.save');
+Route::get('admin/passengerboats/fetch-boat', [PassengerboatController::class, 'fetchboat'])->name('fetchboat.fishingboat');
+Route::get('admin/passengerboats/edit/{id}', [PassengerboatController::class, 'edit'])->name('passengerboat.edit');
+Route::post('admin/passengerboats/update/{id}', [PassengerboatController::class, 'update'])->name('passengerboat.update');
+
 

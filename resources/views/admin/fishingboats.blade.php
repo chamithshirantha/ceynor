@@ -270,13 +270,10 @@
 
 <!-- Delete Modal Start-->
 
-<div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
-      
-
-     
       <div class="modal-body">
           
            <h4>Are you sure ? You want to delete this data ?</h4>
@@ -287,6 +284,26 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary delete_boat">Delete</button>
       
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+<div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div id="errorMessage" class="alert alert-warning d-none"></div>
+      <div class="modal-body">
+        <h4> You want to delete this data ?</h4>
+           <input type="hidden" id="delete_boat_id">
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary delete_boat">Delete</button>
+      </form>
       </div>
     </div>
   </div>
@@ -360,7 +377,7 @@
         function fetchData() {
             $.ajax({
                 type: "GET",
-                url: "{{ route('fetchboat') }}",
+                url: "{{URL('/admin/fishingboats/fetch-boat/')}}",
                 dataType: "json",
                 success: function (response) {
                     // console.log(response.boats);
@@ -540,12 +557,11 @@
             processData:false,
             dataType: "json",
             success: (response) => {
-                if (response) {
-                    this.reset();
+                if (response.status == 200) {
                     alert('Delete has been successfully');
                     fetchData();
                     $('#deletemodel').modal('hide');
-                   
+                    
                     
                 }
                 

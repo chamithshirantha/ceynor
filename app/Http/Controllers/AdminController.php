@@ -12,7 +12,5 @@ class AdminController extends Controller
 
     
 
-    public function passengerboat(){
-        return view('admin.passengerboats');
-    }
+    
 }
