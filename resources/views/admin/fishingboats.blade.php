@@ -157,30 +157,28 @@
 
       <div id="errorMessage" class="alert alert-warning d-none"></div>
       <div class="modal-body">
-          <form action="" id="editForm" method="POST" enctype="multipart/form-data">
+          <form id="editForm"  enctype="multipart/form-data">
             @csrf
 
-            <input type="hidden" id="boat_id"  />
+            <input type="hidden"  id="boat_id" name="boat_id"  />
               <div class="mb-3">
                   <label for="boatname">Boat Name</label>
-                  <input class="form-control" type="text" name="boatname" id="boatname" multiple required>
+                  <input class="form-control" type="text" name="boatname" multiple required>
               </div>
 
               <div class="mb-3">
                 <label for="image" class="form-label">Choose Image</label>
-                {{-- <input class="form-control" type="file" id="image" name="image" required> --}}
+                <input class="form-control" type="file"  name="image">
                 <br>
                 
-                <img src="" class="img-fluid" width="" height="100">
+                <img src="" class="img-fluid"  width="" height="100">
                 <br>
-              
-                
                
               </div>
 
               <div class="form-group">
                   <label for="description">Short Description</label>
-                  <textarea class="form-control" id="discription" name="discription" rows="3"></textarea>
+                  <textarea class="form-control" name="description" rows="3"></textarea>
               </div>
             
               
@@ -235,7 +233,7 @@
 
                   <div class="form-group col-md-4">
                       <label for="Beds">Beds</label>
-                      <input type="text" class="form-control" name="beds" id="beds">
+                      <input type="text" class="form-control" name="c" id="beds">
                   </div>
                 </div>
 
@@ -265,8 +263,36 @@
 </div>
 
 
+<!-- Edit Modal End-->
 
 
+
+
+<!-- Delete Modal Start-->
+
+<div class="modal fade" id="deletemodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      
+
+     
+      <div class="modal-body">
+          
+           <h4>Are you sure ? You want to delete this data ?</h4>
+           <input type="text" id="delete_boat_id">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary delete_boat">Delete</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal End-->
 
 
 @endsection
@@ -287,7 +313,7 @@
                   <thead>
                       <tr>
                           <th>Boat Name</th>
-                          {{-- <th><img src="..\uploads\fishingboats\1675144768.jpg" width="500" height="600"></th> --}}
+                          <th>Image</th>
                           <th>Short Description</th>
                           <th>Length</th>
                           <th>Beam</th>
@@ -342,21 +368,22 @@
                     $.each(response.boats, function (key, item) {
                         $('tbody').append('' 
                         +'<tr><td> '+ item.boat_name +' </td>' +
-                        '<td>'+ item.boat_name +' </td>' +
                         '<td>'+'<img src=../uploads/fishingboats/'+item.image +' height="60px"></td>'+
                         '<td>'+ item.short_description +' </td>'+
                         '<td>'+ item.length +' </td>'+
+                        '<td>'+ item.beam +' </td>'+
                         '<td>'+ item.draft +' </td>'+
                         '<td>'+ item.main_hull_beam +' </td>'+
                         '<td>'+ item.fuel +' </td>'+
                         '<td>'+ item.water +' </td>'+
                         '<td>'+ item.seating_capacity +' </td>'+
+                        '<td>'+ item.speed +' </td>'+
                         '<td>'+ item.beds +' </td>'+
                         '<td>'+ item.hull_type +' </td>'+
                         '<td>'+ item.fish_hold_capacity +' </td>'+
                         '<td>'+ item.price +' </td>'+
                         '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-warning editbtn btn-circle"><i class="fas fa-edit"></i></button>' +' </td>'+
-                        '<td>'+ '<button type="button" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>'
+                        '<td>'+ '<button type="button" value="' + item.id + '" class="btn btn-danger deletebtn btn-circle"><i class="fas fa-trash"></i></button>' +' </td>  </tr>'
                         );
                     });
                     
@@ -423,23 +450,23 @@
 
                   console.log(response);
 
-                  $('#boatname').val(response.boat.boat_name);
-                  $('#discription').val(response.boat.short_description);
+                  $("input[name='boatname']").val(response.boat.boat_name);
+                  $("textarea[name='description']").val(response.boat.short_description);
                   // $('#image').val(response.boat.image);
                   $("input[name='image']").siblings("img").attr("src", "../uploads/fishingboats/"+response.boat.image);
-                  $('#length').val(response.boat.length);
-                  $('#beam').val(response.boat.beam);
-                  $('#draft').val(response.boat.draft);
-                  $('#mainhullbeam').val(response.boat.main_hull_beam);
-                  $('#fuel').val(response.boat.fuel);
-                  $('#water').val(response.boat.water);
-                  $('#seating_capacity').val(response.boat.seating_capacity);
-                  $('#speed').val(response.boat.speed);
-                  $('#beds').val(response.boat.beds);
-                  $('#hulltype').val(response.boat.hull_type);
-                  $('#fish_hold_capacity').val(response.boat.fish_hold_capacity);
-                  $('#price').val(response.boat.price);
-                  $('#boat_id').val(boat_id);
+                  $("input[name='length']").val(response.boat.length);
+                  $("input[name='beam']").val(response.boat.beam);
+                  $("input[name='draft']").val(response.boat.draft);
+                  $("input[name='mainhullbeam']").val(response.boat.main_hull_beam);
+                  $("input[name='fuel']").val(response.boat.fuel);
+                  $("input[name='water']").val(response.boat.water);
+                  $("input[name='seating_capacity']").val(response.boat.seating_capacity);
+                  $("input[name='speed']").val(response.boat.speed);
+                  $("input[name='beds']").val(response.boat.beds);
+                  $("input[name='hulltype']").val(response.boat.hull_type);
+                  $("input[name='fish_hold_capacity']").val(response.boat.fish_hold_capacity);
+                  $("input[name='price']").val(response.boat.price);
+                  $("input[name='boat_id']").val(boat_id);
                 
                   
                 }
@@ -452,46 +479,86 @@
 
 
 
-      $(document).on('click', '.update_student', function (e) {
+      $(document).on('submit', '#editForm', function (e) {
             e.preventDefault();
 
-            $(this).text('Updating..');
+           
             var id = $('#boat_id').val();
             // alert(id);
+            let EditFormData = new FormData($('#editForm')[0]);
+
+        
             var url = "{{URL('/admin/fishingboats/update/')}}";
-            var fixURL = url+"/"+id;
-
-            var data = {
-              'boatname': $('.boatname').val(),
-              
-              'discription': $('.discription').val(),
-              
-            }
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+            var dltUrl = url+"/"+id;
 
             $.ajax({
-                type: "PUT",
-                url: fixURL,
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
+              type: "POST",
+              url: dltUrl,
+              data: EditFormData,
+              contentType:false,
+              processData:false,
+              success: (response) => {
+                if (response) {
+                    this.reset();
+                    alert('Update has been successfully');
+                    fetchData();
+                    $('#editnew').modal('hide');
+                    $('#editForm')[0].reset();
                     
                 }
+                
+              }
             });
-
-
             
 
         });
 
 
-  
+        $(document).on('click', '.deletebtn', function (e) {
+          e.preventDefault();
+          var id = $(this).val();
+          $('#deletemodel').modal('show');
+          $('#delete_boat_id').val(id);
+        });
+        $(document).on('click', '.delete_boat', function (e) {
+          e.preventDefault();
+
+          var id = $('#delete_boat_id').val();
+          var url = "{{URL('/admin/fishingboats/delete/')}}";
+          var dltUrl = url+"/"+id;
+
+          $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+          $.ajax({
+            type: "DELETE",
+            url: dltUrl,
+            contentType:false,
+            processData:false,
+            dataType: "json",
+            success: (response) => {
+                if (response) {
+                    this.reset();
+                    alert('Delete has been successfully');
+                    fetchData();
+                    $('#deletemodel').modal('hide');
+                   
+                    
+                }
+                
+              }
+
+            
+          });
+        });
+
+
+
+      
+
 
 
 

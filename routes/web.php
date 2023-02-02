@@ -41,8 +41,8 @@ Route::get('admin/fishingboats',[FishingboatController::class, 'index'])->name('
 Route::post('admin/fishingboats/save',[FishingboatController::class, 'save'])->name('fishingboat.save');
 Route::get('admin/fishingboats/fetch-boat', [FishingboatController::class, 'fetchboat'])->name('fetchboat');
 Route::get('admin/fishingboats/edit/{id}', [FishingboatController::class, 'edit'])->name('fishingboat.edit');
-Route::put('admin/fishingboats/update/{id}', [FishingboatController::class, 'update']);
-
+Route::post('admin/fishingboats/update/{id}', [FishingboatController::class, 'update'])->name('fishingboat.update');
+Route::delete('admin/fishingboats/delete/{id}', [FishingboatController::class, 'destory'])->name('fishingboat.delete');
 
 
 

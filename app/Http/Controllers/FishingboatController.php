@@ -89,6 +89,7 @@ class FishingboatController extends Controller
     }
 
     public function update(Request $request, $id)
+
     {
         $validator = Validator::make($request->all(), [
             'boatname'=> 'required',
@@ -104,27 +105,79 @@ class FishingboatController extends Controller
         }
         else
         {
-            $student = FishingBoat::find($id);
-            if($student)
+            $boat = FishingBoat::find($id);
+            if($boat)
             {
-                $student->boat_name = $request->input('boatname');
-                $student->short_description = $request->input('description');
+                $boat->boat_name = $request->input('boatname');
+                $boat->short_description = $request->input('description');
+                $boat->length = $request->input('length');
+                $boat->beam = $request->input('beam');
+                $boat->draft = $request->input('draft');
+                $boat->main_hull_beam = $request->input('mainhullbeam');
+                $boat->fuel = $request->input('fuel');
+                $boat->water = $request->input('water');
+                $boat->seating_capacity = $request->input('seating_capacity');
+                $boat->speed = $request->input('speed');
+                $boat->beds = $request->input('beds');
+                $boat->hull_type = $request->input('hulltype');
+                $boat->fish_hold_capacity = $request->input('fish_hold_capacity');
+                $boat->price = $request->input('price');
                 
-                $student->update();
+                if ($request->hasFile('image')) {
+
+                    $path = '/uploads/fishingboats/'.$boat->image;
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+
+                    $file = $request->file('image');
+                    $extension = $file->getClientOriginalName();
+                    $filename = time() . '.' .$extension;
+                    $file->move(base_path('\uploads\fishingboats'), $filename);
+                    $boat->image = $filename;
+                }
+                $boat->update();
                 return response()->json([
                     'status'=>200,
-                    'message'=>'Student Updated Successfully.'
+                    'message'=>'Boat Updated Successfully.'
                 ]);
             }
             else
             {
                 return response()->json([
                     'status'=>404,
-                    'message'=>'No Student Found.'
+                    'message'=>'No Boat Found.'
                 ]);
             }
 
         }
+    }
+
+    public function destory($id)
+    {
+        $boat = FishingBoat::find($id);
+        if($boat)
+        {
+            $path = '/uploads/fishingboats/'.$boat->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $boat->delete();
+           
+
+            return response()->json([
+                'status'=>200,
+                'message'=> 'Record Delete !!',
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status'=>404,
+                'message'=>'No boats Found.'
+            ]);
+        }
+
     }
 
         
